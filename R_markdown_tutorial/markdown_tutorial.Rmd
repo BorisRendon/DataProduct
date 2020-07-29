@@ -1,0 +1,132 @@
+---
+title: "R Markdown Tutorial"
+output: html_notebook
+---
+# texto
+# Italicas y negritas
+
+* La palabra **hola** esta en negritas
+   * Utilizamos '**hola**'
+
+* La palabra *mundo* está en italicas
+   * Utilizamos '*mundo*'
+   
+## Sub y Supra indices
+
+* La formula quimica del agua es H~2~O y la de carbonato de sodio es Na~2~CO~3~
+  * 'H~2~0' = H~2~0
+  * `Na~2~co~3~` =Na~2~CO~3~
+  
+* tambien podemos incluir text
+  * Precio~del~dia~
+* Podemos crear exponentes
+  * `x^2^` = x^2^
+  
+## inline code
+* para asignar variables en R es `x <- y + 1 `
+* para que lo ejecute hacemos `r (x <-5 + 2)`
+* el valor en la variable es `r x` 
+  
+  
+## Hyperlinks 
+
+* para crear un link `[Text](url)`
+  * ejemplo: [Youtube](http://www.youtube.com)
+  
+# imagenes
+
+Para agregar imagenes usamos `![caption](directorio)`
+![](test.jpg)
+
+![foto en calidad](test.jpg)
+
+![foto de calidad ^[Imagen descargada de http://www.google.com]](test.jpg)
+
+
+
+# Encabezados y sub encabezados
+
+* `#` Heading 1
+* `##` Heading 2
+* `###` Heading 3
+
+
+# Listas
+```
++ item 1
+  + item 1.1
+   +item 1.1.1
++ item 2
+```
+
++ item 1
+  + item 1.1
+   
++ item 2
+
+## listas ordenadas 
+
+``` 
+1. item 1
+  1. item 1.1
+  2. item 1.2
+2. item 2
+  + item 2.1
+```
+
+1. item 1
+  1. item 1.1
+  2. item 1.2
+2. item 2
+  + item 2.1
+  
+# Quotes
+> In God, all other bring data.
+>
+> --- W Edwards
+
+>“Keep away from people who try to belittle your ambitions. Small people always do that, but the really great make you feel that you, too, can become great.”
+>
+> --- Mark Twain
+
+
+
+# Plain code chunk
+
+```
+SELECT *
+FROM schema.table
+ WHERE id > 1000 
+ ORDER BY date
+ limit 10
+```
+
+
+# expresiones matematica
+
+$\int_a^b e^{x^2}dx$
+
+$$\int_a^b e^{x^2}dx$$
+
+
+```
+$$X = \begin{bmatrix}1 & x_{1}\\
+1 & x_{2}\\
+1 & x_{3}
+\end{bmatrix}$$
+```
+$$X = \begin{bmatrix}1 & x_{1}\\
+1 & x_{2}\\
+1 & x_{3}
+\end{bmatrix}$$
+
+```
+$$\Theta = \begin{pmatrix}\alpha & \beta\\
+\gamma & \delta
+\end{pmatrix}$$
+```
+
+$$\Theta = \begin{pmatrix}\alpha & \beta\\
+\gamma & \delta
+\end{pmatrix}$$
+
