@@ -130,3 +130,26 @@ $$\Theta = \begin{pmatrix}\alpha & \beta\\
 \gamma & \delta
 \end{pmatrix}$$
 
+# Footnote
+
+ referencia del libro ^[https://bookdown.org/yihui/rmarkdown/]
+ 
+ 
+# Chunk de codigo 
+
+`ctrl + alt + i`
+
+```{r, echo=TRUE}
+head(mtcars)
+```
+ * *ponemos la propiedad echo = TRUE si queremos mostrar codigo* 
+ 
+```{r warning=FALSE}
+library(dplyr)
+mtcars %>%
+    group_by(carb) %>%
+  summarise(avg_mpg = mean(mpg), .groups = 'drop')
+```
+
+ * *ctrl shift m para %>%*
+

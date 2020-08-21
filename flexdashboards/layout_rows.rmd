@@ -1,0 +1,130 @@
+---
+title: "clase: Flex Dashboards"
+output:
+  flexdashboard::flex_dashboard:
+    orientation: rows # por default son columnas
+    vertical_layout: fill # por default es roll
+    
+    # dos hashtag son una fila
+    # tres hashtag son una columna
+    
+# unique(pokemon$type)
+# icon="fa-" viene de font awesome
+---
+    
+```{r librerias}
+library(flexdashboard)
+library(readr)
+library(dplyr)
+library(DT)
+```
+
+```{r cargar archivo}
+pokemon <- read_csv("pokemon.csv")
+```
+
+# Kpis {data-icon=fa-ruler}
+
+##
+###
+```{r}
+valueBox(nrow(pokemon), caption="Total de Pokemons", icon="fa-paw")
+```
+
+###
+```{r}
+valueBox(sum(pokemon$is_legendary), caption="Total de Legendarios", icon="fa-crown", color="success")
+```
+
+###
+```{r}
+valueBox(round(mean(pokemon$height_m, na.rm=TRUE), 2), caption="Estatura promedio", icon="fa-weight-hanging", color="warning")
+```
+
+##
+### electric pokemon average attack
+```{r}
+attack_metrics <-
+pokemon %>% 
+  group_by(type1) %>%
+    summarise(avg_attack=mean(sp_attack, na.rm=TRUE))%>%
+      mutate(avg_attack=round(avg_attack, 0))
+
+gauge(attack_metrics %>% 
+        filter(type1=='electric') %>%
+          pull(avg_attack), min=min(pokemon$sp_attack), max=max(pokemon$sp_attack), symbol=' Att',
+            gaugeSectors(success=c(100, 194), warning=c(50, 100), danger=c(0, 50)))
+```
+
+### water pokemon average attack
+```{r}
+attack_metrics <-
+pokemon %>% 
+  group_by(type1) %>%
+    summarise(avg_attack=mean(sp_attack, na.rm=TRUE))%>%
+      mutate(avg_attack=round(avg_attack, 0))
+
+gauge(attack_metrics %>% 
+        filter(type1=='water') %>%
+          pull(avg_attack), min=min(pokemon$sp_attack), max=max(pokemon$sp_attack), symbol=' Att',
+            gaugeSectors(success=c(100, 194), warning=c(50, 100), danger=c(0, 50)))
+```
+
+### other pokemon average attack
+```{r}
+attack_metrics <-
+pokemon %>% 
+  group_by(type1) %>%
+    summarise(avg_attack=mean(sp_attack, na.rm=TRUE))%>%
+      mutate(avg_attack=round(avg_attack, 0))
+
+gauge(150, min=min(pokemon$sp_attack), max=max(pokemon$sp_attack), symbol=' Att',
+            gaugeSectors(success=c(100, 194), warning=c(50, 100), danger=c(0, 50)))
+```
+
+# pokemon data
+
+##
+###
+```{r head pokemon}
+DT::datatable(pokemon)
+```
+
+## {.tabset}
+### Fire
+```{r}
+pokemon_fire <- 
+  pokemon %>%
+    filter(type1=='fire') %>%
+      select(name, japanese_name, generation, is_legendary, abilities)
+
+DT::datatable(pokemon_fire)
+```
+
+### Water
+```{r}
+pokemon %>%
+  filter(type1=='water') %>%
+    select(name, japanese_name, generation, is_legendary, abilities) %>%
+      DT::datatable()
+```
+
+### Electric
+```{r}
+pokemon %>%
+  filter(type1=='electric') %>%
+    select(name, japanese_name, generation, is_legendary, abilities) %>%
+      DT::datatable()
+```
+
+
+# layout example
+
+## {data-height=50}
+### Columna 1.1 {data-width=4}
+### Columma 1.2 {data-width=8}
+
+## {data-height=50}
+### Columna 2.1
+### Columna 2.2
+### Columna 2.3
